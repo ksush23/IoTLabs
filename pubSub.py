@@ -140,7 +140,10 @@ for connectivityInfo in coreInfo.connectivityInfoList:
     print("Trying to connect to core at %s:%d" % (currentHost, currentPort))
     myAWSIoTMQTTClient.configureEndpoint(currentHost, currentPort)
     try:
+    	t1 = time.perf_counter()
         myAWSIoTMQTTClient.connect()
+        t2 = time.perf_counter() - t1
+        print("Connection time:", t2)
         connected = True
         break
     except BaseException as e:
